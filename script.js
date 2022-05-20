@@ -5,12 +5,6 @@
 // Ogni membro ha le informazioni necessarie per stampare la relativa card: Nome, Ruolo e Foto.
 // Una volta definita la struttura dati, prendendo come riferimento la card di esempio presente nell’html, stampare dinamicamente una card per ogni membro del team.
 
-// BONUS:
-// Utilizzare gli input presenti nella pagina per permettere all’utente di aggiungere nuovi membri del team:
-// cliccando sul pulsante “add” viene creato un nuovo oggetto,
-// il quale viene inserito nell’array iniziale
-// e viene stampata una nuova card con tutte le informazioni inserite dall’utente.
-
 // Consigli del giorno:
 // Ragioniamo come sempre a step.
 // Scriviamo prima la logica in italiano e poi traduciamo in codice. console.log() è nostro amico.
@@ -95,3 +89,34 @@ function generateSingleCard(member) {
 }
 
 generateMembersCards();
+
+
+
+// BONUS:
+// Utilizzare gli input presenti nella pagina per permettere all’utente di aggiungere nuovi membri del team:
+// cliccando sul pulsante “add” viene creato un nuovo oggetto,
+// il quale viene inserito nell’array iniziale
+// e viene stampata una nuova card con tutte le informazioni inserite dall’utente.
+
+//1. selezione bottone per aggiungere nuovi members
+const generateMemberButton = document.getElementById("addMemberButton");
+generateMemberButton.addEventListener('click', () => createNewMember());
+
+//2. funzione per creare nuovi membri con struttura delle card precedenti
+function createNewMember() {
+    let name = document.getElementById('name').value;
+    let role = document.getElementById('role').value;
+    let image = document.getElementById('image').value;
+
+    const newMemberCard = {
+        photo: image,
+        'name': name,
+        'role': role
+    }
+
+   
+    teamMembers.push(newMemberCard);
+
+    generateSingleCard(newMemberCard);
+}
+
