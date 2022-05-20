@@ -17,7 +17,7 @@
 // Quando un pezzo di codice funziona, chiediamoci se possiamo scomporlo in funzioni più piccole.
 
 
-//array contentenente oggetti (immagini nome ruolo)
+//1. array contentenente oggetti (immagini nome ruolo)
 const teamMembers = [
     {
         photo: 'img/wayne-barnett-founder-ceo.jpg',
@@ -50,3 +50,48 @@ const teamMembers = [
         role: 'Graphic Designer'
     }
 ]
+
+//2. selezione su team-container
+const teamContainer = document.querySelector('.team-container');
+
+//3. funzione per generare card team members 
+function generateMembersCards() {
+    
+    for (let i = 0; i < teamMembers.length; i++) {
+        const member = teamMembers[i];
+        generateSingleCard(member);
+
+    }
+}
+
+
+//4. funzione per creare le card e la struttura
+function generateSingleCard(member) {
+    const teamCardContainer = document.createElement('div');
+    teamCardContainer.classList.add('team-card');
+    teamContainer.appendChild(teamCardContainer);
+
+    const cardImageDiv = document.createElement('div');
+    cardImageDiv.classList.add('card-image');
+    teamCardContainer.appendChild(cardImageDiv);
+
+    const cardImage = document.createElement('img');
+    cardImageDiv.appendChild(cardImage);
+    cardImage.src = member.photo;
+
+    const cardTextDiv = document.createElement('div');
+    teamCardContainer.appendChild(cardTextDiv);
+    cardTextDiv.classList.add('card-text');
+
+    const nameText = document.createElement('h3');
+    nameText.innerText = member.name;
+    cardTextDiv.appendChild(nameText);
+
+    const roleText = document.createElement('p');
+    roleText.innerText = member.role;
+    cardTextDiv.appendChild(roleText);
+
+    
+}
+
+generateMembersCards();
